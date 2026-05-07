@@ -1,15 +1,49 @@
+import time
 import yfinance as yf
+
+
+CACHE_TTL_SECONDS = 1800  # 30 minutes
+_company_cache: dict[str, dict] = {}
+
+
+def _get_cached(ticker: str):
+    cached = _company_cache.get(ticker)
+    if not cached:
+        return None
+
+    age = time.time() - cached["timestamp"]
+    if age > CACHE_TTL_SECONDS:
+        _company_cache.pop(ticker, None)
+        return None
+
+    return cached["data"]
+
+
+def _set_cache(ticker: str, data: dict):
+    _company_cache[ticker] = {
+        "timestamp": time.time(),
+        "data": data,
+    }
 
 
 def fetch_company_market_data(ticker: str) -> dict:
     """
-    Fetch real company market data from Yahoo Finance.
+    Fetch real company market data from Yahoo Finance with simple in-memory caching.
     """
+    ticker = ticker.upper().strip()
+
+    cached_data = _get_cached(ticker)
+    if cached_data is not None:
+        return cached_data
+
     stock = yf.Ticker(ticker)
     info = stock.info
 
-    return {
-        "ticker": ticker.upper(),
+    if not info:
+        raise ValueError("No company data returned from Yahoo Finance.")
+
+    data = {
+        "ticker": ticker,
         "company_name": info.get("longName"),
         "sector": info.get("sector"),
         "industry": info.get("industry"),
@@ -36,3 +70,6 @@ def fetch_company_market_data(ticker: str) -> dict:
         "beta": info.get("beta"),
         "shares_outstanding": info.get("sharesOutstanding"),
     }
+
+    _set_cache(ticker, data)
+    return data

@@ -1,0 +1,8 @@
+{
+  "model_name": "Startup Synthetic Benchmark Random Forest",
+  "target_name": "valuation",
+  "target_transform": "none",
+  "mae": 21168976.63430309,
+  "rmse": 29284581.115709376,
+  "r2": 0.9190276524558643
+}

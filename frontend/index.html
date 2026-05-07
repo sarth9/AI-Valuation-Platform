@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Valuation Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-content">
+        <span class="badge">AI + Finance + Valuation</span>
+        <h1>Multi-Mode Company Valuation Platform</h1>
+        <p>
+          Estimate valuations for public companies, private companies, and startup/SaaS businesses using mode-specific logic.
+        </p>
+        <div id="backendStatus" class="backend-status">
+          Checking backend status...
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <div>
+            <h2>Valuation Mode</h2>
+            <p>Select the company type, then fill the corresponding inputs.</p>
+          </div>
+        </div>
+
+        <div class="mode-switcher">
+          <button class="mode-btn active" data-mode="public" type="button">Public Company</button>
+          <button class="mode-btn" data-mode="private" type="button">Private Company</button>
+          <button class="mode-btn" data-mode="startup" type="button">Startup / SaaS</button>
+        </div>
+
+        <form id="dynamicForm"></form>
+      </section>
+
+      <aside class="panel result-panel">
+        <h2>Prediction Output</h2>
+        <div id="resultBox" class="result-box">
+          <p class="muted-text">Choose a mode and submit the form to see the valuation estimate.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Explanation</h3>
+          <ul id="explanationList" class="explanation-list">
+            <li class="muted-text">No explanation yet.</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Model Information</h3>
+          <div id="modelInfoBox" class="model-info-box">
+            <p class="muted-text">Model details will appear here.</p>
+          </div>
+        </div>
+
+        <div class="info-card warning-card">
+          <h3>Important Disclaimer</h3>
+          <ul class="explanation-list">
+            <li>This tool provides an estimate, not a formal valuation opinion.</li>
+            <li>Outputs should not be treated as investment, legal, or financial advice.</li>
+            <li>Public mode is strongest because it is backed by the trained ML model.</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+
+    <section id="publicCompareSection" class="container public-extra-section">
+      <div class="panel comparison-panel">
+        <h2>Compare with Real Public Company</h2>
+        <p class="helper-text">Available only in Public Company mode.</p>
+
+        <div class="comparison-controls">
+          <input type="text" id="tickerInput" placeholder="Enter ticker e.g. AAPL" />
+          <button type="button" id="compareBtn" class="primary-btn">Compare</button>
+        </div>
+
+        <div id="comparisonBox" class="comparison-box">
+          <p class="muted-text">Enter a ticker and compare actual market cap vs model prediction.</p>
+        </div>
+      </div>
+
+      <div class="panel chart-panel">
+        <h2>Comparison Chart</h2>
+        <div class="chart-wrap">
+          <canvas id="valuationChart"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

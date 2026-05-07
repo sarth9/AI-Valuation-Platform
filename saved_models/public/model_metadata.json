@@ -1,0 +1,46 @@
+{
+  "best_model_name": "Tuned Random Forest",
+  "metrics": {
+    "cv_results": {
+      "linear_regression": {
+        "model": "linear_regression",
+        "cv_r2_mean": -12.052630656029324,
+        "cv_r2_std": 13.471007097432755,
+        "cv_mae_log_mean": 1.4307218917945144
+      },
+      "random_forest": {
+        "model": "random_forest",
+        "cv_r2_mean": 0.8940382659425963,
+        "cv_r2_std": 0.05272502200201842,
+        "cv_mae_log_mean": 0.24045141921576058
+      },
+      "xgboost": {
+        "model": "xgboost",
+        "cv_r2_mean": 0.9041063752655688,
+        "cv_r2_std": 0.056783538336044784,
+        "cv_mae_log_mean": 0.22770525162681068
+      }
+    },
+    "test_results": {
+      "linear_regression": {
+        "model": "Linear Regression",
+        "mae": 154205419339.02756,
+        "rmse": 322352297769.89307,
+        "r2": -0.23897666454131405
+      },
+      "tuned_random_forest": {
+        "model": "Tuned Random Forest",
+        "mae": 37755264205.06238,
+        "rmse": 74390231219.2581,
+        "r2": 0.9340167955032616
+      },
+      "tuned_xgboost": {
+        "model": "Tuned XGBoost",
+        "mae": 34430767104.0,
+        "rmse": 84742038546.2479,
+        "r2": 0.9143752455711365
+      }
+    }
+  },
+  "target_transform": "log1p"
+}

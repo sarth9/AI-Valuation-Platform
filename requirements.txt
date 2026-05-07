@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-dotenv
+pandas
+numpy
+scikit-learn
+xgboost-cpu
+yfinance
+joblib
+matplotlib
+python-multipart
